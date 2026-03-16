@@ -32,13 +32,15 @@ function onlistening() {
   // Creating client and connecting it to server
   //
   tls
-    .connect(server.address().port, {
+    .connect(server.address().port, '::1', {
       ca: fixtures.readKey('rsa_cert.crt'),
     })
     .on('secureConnect', common.mustCall(onsecureConnect));
 }
 
-function onsecureConnection() {}
+function onsecureConnection() {
+  // Intentionally left empty: this test only verifies that the handler runs.
+}
 
 function onsecureConnect() {
   // end() client socket, which causes slightly different hook events than
@@ -50,7 +52,9 @@ function onsecureConnect() {
   server.close(common.mustCall(onserverClosed));
 }
 
-function onserverClosed() {}
+function onserverClosed() {
+  // Intentionally empty: used only to assert that 'close' is invoked.
+}
 
 process.on('exit', onexit);
 
