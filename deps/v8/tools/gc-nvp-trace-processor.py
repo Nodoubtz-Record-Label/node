@@ -319,6 +319,11 @@ def process_trace(filename):
       if size < power*1024:
         return "%.1f" % (float(size) / power) + " " + suffixes[i]
       power *= 1024
+    # Fallback in case size is larger than the largest defined suffix.
+    # At this point, power is 1024 times larger than the last power used
+    # in the loop, so divide by 1024 to get the previous step.
+    last_power = power // 1024
+    return "%.1f" % (float(size) / last_power) + " " + suffixes[-1]
 
   def throughput(name, trace):
     total_live_after = calc_total(trace, 'total_size_after')
