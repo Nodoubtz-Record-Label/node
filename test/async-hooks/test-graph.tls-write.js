@@ -50,7 +50,9 @@ function onsecureConnect() {
   server.close(common.mustCall(onserverClosed));
 }
 
-function onserverClosed() {}
+function onserverClosed() {
+  // Intentionally empty: used only to assert that 'close' is invoked.
+}
 
 process.on('exit', onexit);
 
