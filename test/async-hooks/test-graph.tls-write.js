@@ -38,7 +38,9 @@ function onlistening() {
     .on('secureConnect', common.mustCall(onsecureConnect));
 }
 
-function onsecureConnection() {}
+function onsecureConnection() {
+  // Intentionally left empty: this test only verifies that the handler runs.
+}
 
 function onsecureConnect() {
   // end() client socket, which causes slightly different hook events than
