@@ -32,7 +32,7 @@ function onlistening() {
   // Creating client and connecting it to server
   //
   tls
-    .connect(server.address().port, {
+    .connect(server.address().port, '::1', {
       ca: fixtures.readKey('rsa_cert.crt'),
     })
     .on('secureConnect', common.mustCall(onsecureConnect));
